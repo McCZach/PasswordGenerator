@@ -53,6 +53,8 @@ int main()
 	}
 
 	cout << endl;
+	
+	delete [] ptr;
 
 	return 0;
 }
