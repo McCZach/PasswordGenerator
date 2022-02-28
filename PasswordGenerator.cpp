@@ -17,6 +17,8 @@
 #include <fstream>
 using namespace std;
 
+void fillArray(char* ptr, int size, const int MAX, const int MIN);
+
 int main()
 {
 	//Used for generating password length
@@ -30,8 +32,9 @@ int main()
 
 	char* ptr = nullptr;
 
-	char character,
-		input;
+	char input;
+
+	srand(time(0));
 
 	cout << "Do you have a desired length? ";
 	cin >> input;
@@ -56,40 +59,33 @@ int main()
 			}
 			ptr = new char[size];
 
-			for (int i = 0; i < size; i++)
-			{
-				character = rand() % (MAX - MIN + 1) + MIN;
+			fillArray(ptr, size, MAX, MIN);
 
-				ptr[i] = character;
-			}
 			break;
 
 		case 'N':
 			//Random length created and random characters added
-			srand(time(0));
 			size = rand() % (MAX_RANGE - MIN_RANGE + 1) + MIN_RANGE;
 			ptr = new char[size];
+			
+			fillArray(ptr, size, MAX, MIN);
 
-			for (int i = 0; i < size; i++)
-			{
-				character = rand() % (MAX - MIN + 1) + MIN;
-
-				ptr[i] = character;
-			}
 			break;
 
 		default:
 			break;
 	}
 
+	//Write to file
 	fstream file;
-	file.open("Passwords.txt");
+	file.open("Passwords.txt", file.app);
 
-	cout << endl;
 	for (int x = 0; x < size; x++)
 	{
 		file << ptr[x];
 	}
+	file << "\n";
+
 
 	//Password output
 	cout << endl;
@@ -103,9 +99,23 @@ int main()
 	return 0;
 }
 
+void fillArray(char* ptr, int size, const int MAX, const int MIN)
+{
+	char character;
+
+	for (int i = 0; i < size; i++)
+	{
+		character = rand() % (MAX - MIN + 1) + MIN;
+
+		ptr[i] = character;
+	}
+}
+
 
 /*	SAMPLE OUTPUT
 
 cNP:\I-Oz!9-
 
 */
+
+//Passwords will keep being written to the .txt
