@@ -5,8 +5,9 @@
 //
 //	Author:			Zach
 //
-//	Description:	Program creates a random length array using a pointer and
-//					generates random ASCII values to add to array to print out and add to file
+//	Description:		Program creates a random length array using a pointer and
+//				generates random ASCII values to add to array to print 
+//				out and add to file
 //
 //******************************************************************************************************
 
@@ -17,22 +18,26 @@
 #include <fstream>
 using namespace std;
 
+//******************************************************************************************************
+
 void fillArray(char* ptr, int size, const int MAX, const int MIN);
+
+//******************************************************************************************************
 
 int main()
 {
-	//Used for generating password length
 	const int MAX_RANGE = 16;
 	const int MIN_RANGE = 8;
 	//Used for generating ASCII value - greater than 32, less than 127 [33-126]
 	const int MAX = 126;
 	const int MIN = 33;
 	
+	char input;
+	
 	int size = 0;
 
 	char* ptr = nullptr;
-
-	char input;
+	
 
 	srand(time(0));
 
@@ -75,6 +80,7 @@ int main()
 		default:
 			break;
 	}
+	
 
 	//Write to file
 	fstream file;
@@ -99,6 +105,8 @@ int main()
 	return 0;
 }
 
+//******************************************************************************************************
+
 void fillArray(char* ptr, int size, const int MAX, const int MIN)
 {
 	char character;
@@ -111,6 +119,7 @@ void fillArray(char* ptr, int size, const int MAX, const int MIN)
 	}
 }
 
+//******************************************************************************************************
 
 /*	SAMPLE OUTPUT
 
