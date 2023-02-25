@@ -5,7 +5,8 @@
 //
 //	Author:			Zach
 //
-//	Description:	Object based addition of 'PasswordGenerator.cpp'
+//	Description:		Object oriented program based on 
+//				'PasswordGenerator.cpp'
 //
 //*************************************************************************
 
@@ -16,33 +17,42 @@
 #include <fstream>
 using namespace std;
 
+//*************************************************************************
+
 class Password
 {
-private:
-	string pass = "";
-	int length;
-public:
-	string getPassword() const
-	{
-		return pass;
-	}
-	void setPassword(const string& input)
-	{
-		pass = input;
-	}
-	int getLength() const
-	{
-		return length;
-	}
-	void setLength(const int& size)
-	{
-		length = size;
-	}
+	private:
+		string pass = "";
+		int length;
+	public:
+		string getPassword() const
+		{
+			return pass;
+		}
+	
+		void setPassword(const string& input)
+		{
+			pass = input;
+		}
+	
+		int getLength() const
+		{
+			return length;
+		}
+	
+		void setLength(const int& size)
+		{
+			length = size;
+		}
 };
+
+//*************************************************************************
 
 void getSize(Password& password, const int& MAX_RANGE, const int& MIN_RANGE, const int& MAX, const int& MIN);
 void generatePassword(Password& password, const int& MAX, const int& MIN);
 void writeToFile(const Password& password);
+
+//*************************************************************************
 
 int main()
 {
@@ -65,7 +75,9 @@ int main()
 
 	return 0;
 }
+
 //*************************************************************************
+
 void getSize(Password& password, const int& MAX_RANGE, const int& MIN_RANGE, const int& MAX, const int& MIN)
 {
 	char input;
@@ -108,7 +120,9 @@ void getSize(Password& password, const int& MAX_RANGE, const int& MIN_RANGE, con
 		break;
 	}
 }
+
 //*************************************************************************
+
 void generatePassword(Password& password, const int& MAX, const int& MIN)
 {
 	char character;
@@ -120,7 +134,9 @@ void generatePassword(Password& password, const int& MAX, const int& MIN)
 		password.setPassword(password.getPassword() += character);
 	}
 }
+
 //*************************************************************************
+
 void writeToFile(const Password& password)
 {
 	fstream file("Passwords.txt", ios::app);
@@ -135,3 +151,5 @@ void writeToFile(const Password& password)
 
 	file.close();
 }
+
+//*************************************************************************
